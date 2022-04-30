@@ -1,0 +1,11 @@
+﻿TITLE = "Title"
+FPS = 60
+PLAY_TIME = 60
+
+WIDTH, HEIGHT = 1080, 620
+ROWS, COLS = 16, 16
+
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+BG = (250, 250, 250)
