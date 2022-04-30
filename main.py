@@ -67,10 +67,13 @@ def start_game():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 start_game()
 
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_BACKSPACE:
+                canvas.create_img()
+
         if left_time == 0:
             canvas.create_img()
 
-            similarity_percent = int(100 - image_comparer.rmsdiff(drawn_image, model_image))
+            similarity_percent = int(100 - image_comparer.rms_diff(drawn_image, model_image))
             divider = 4
 
             # Clamp the percent within allowed boundaries
