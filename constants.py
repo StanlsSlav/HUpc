@@ -1,6 +1,6 @@
 ﻿TITLE = "Title"
-FPS = 60
-PLAY_TIME = 60
+FPS = 25
+PLAY_TIME = 15
 
 
 WIDTH, HEIGHT = 1080, 620

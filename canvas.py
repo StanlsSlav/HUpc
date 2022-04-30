@@ -30,7 +30,4 @@ class Canvas:
 
     def create_img(self):
         sub = self.win.subsurface(self.rect)
-        pygame.image.save(sub, "imgs/screenshot.jpg")
-
-        # TODO: Remove when done
-        self.win.blit(pygame.image.load("imgs/screenshot.jpg"), (self.win.rect.width * 2 - 5, 10))
+        pygame.image.save(sub, "imgs/screenshot.png")
