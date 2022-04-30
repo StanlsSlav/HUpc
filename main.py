@@ -39,7 +39,10 @@ def main():
                 canvas.draw_square(pygame.mouse.get_pos())
 
             if pygame.mouse.get_pressed()[2]:
-                canvas.remove_squere(pygame.mouse.get_pos())
+                canvas.remove_square(pygame.mouse.get_pos())
+
+            if event.type == pygame.K_SPACE:
+                canvas.create_img()
 
         pygame.display.update()
     pygame.quit()

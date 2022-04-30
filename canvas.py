@@ -2,7 +2,7 @@
 from pygame import Rect
 
 from board_square import BoardSquare
-from constants import BLACK, WHITE
+from constants import BLACK, BG
 
 
 class Canvas:
@@ -14,23 +14,23 @@ class Canvas:
         pygame.display.flip()
 
     def draw_square(self, mouse_pos: (int, int)):
+        self.draw_at(mouse_pos, BLACK)
+
+    def remove_square(self, mouse_pos: (int, int)):
+        self.draw_at(mouse_pos, BG)
+
+    def draw_at(self, mouse_pos: (int, int), color: (int, int, int)):
         (mouse_x, mouse_y) = mouse_pos
 
         if mouse_x not in range(self.rect.left, self.rect.left + self.rect.width) or \
                 mouse_y not in range(self.rect.top, self.rect.top + self.rect.height):
             return
 
-        BoardSquare(self.win, BLACK, self, mouse_pos)
-
-    def remove_squere(self, mouse_pos: (int, int)):
-        (mouse_x, mouse_y) = mouse_pos
-
-        if mouse_x not in range(self.rect.left, self.rect.left + self.rect.width) or \
-                mouse_y not in range(self.rect.top, self.rect.top + self.rect.height):
-            return
-
-        BoardSquare(self.win, WHITE, self, mouse_pos)
+        BoardSquare(self.win, color, self, mouse_pos)
 
     def create_img(self):
         sub = self.win.subsurface(self.rect)
-        pygame.image.save(sub, "screenshot.jpg")
+        pygame.image.save(sub, "imgs/screenshot.jpg")
+
+        # TODO: Remove when done
+        self.win.blit(pygame.image.load("imgs/screenshot.jpg"), (self.win.rect.width * 2 - 5, 10))
