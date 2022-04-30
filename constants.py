@@ -1,5 +1,5 @@
 ﻿TITLE = "Title"
-FPS = 25
+FPS = 45
 PLAY_TIME = 15
 
 
