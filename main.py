@@ -26,6 +26,8 @@ def main():
             lbl = font.render(f"Time left: {int((end_time - datetime.now()).total_seconds())}", True, BLACK)
             WIN.blit(lbl, (canvas.rect.width + 10, 10))
 
+        WIN.blit(pygame.image.load("imgs/pixel_art_img1.png"), (canvas.rect.width * 2 - 5, 10))
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -35,6 +37,9 @@ def main():
 
             if pygame.mouse.get_pressed()[0]:
                 canvas.draw_square(pygame.mouse.get_pos())
+
+            if pygame.mouse.get_pressed()[2]:
+                canvas.remove_squere(pygame.mouse.get_pos())
 
         pygame.display.update()
     pygame.quit()
