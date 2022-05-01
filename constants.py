@@ -1,4 +1,4 @@
-﻿TITLE = "Title"
+﻿TITLE = "Pixel Run"
 FPS = 45
 PLAY_TIME = 15
 
