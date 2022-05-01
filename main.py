@@ -26,6 +26,7 @@ def start_game():
     WIN.fill(BG)
 
     run = True
+    met_end_of_round = False
     clock = pygame.time.Clock()
     end_time = None
     left_time = -1
@@ -38,6 +39,7 @@ def start_game():
     drawn_image = "imgs/screenshot.png"
     model_image = pick_random_image()
 
+    # Game loop
     while run:
         clock.tick(FPS)
 
@@ -51,12 +53,17 @@ def start_game():
 
         WIN.blit(pygame.image.load(model_image), (WIN.get_width() / 3 * 2 - 10, 10))
 
+        # Event loop
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
 
             if event.type == pygame.MOUSEBUTTONDOWN and end_time is None:
-                end_time = datetime.now() + timedelta(seconds=PLAY_TIME + 1)
+                # Switch the purpose of click on end of round
+                if not met_end_of_round:
+                    end_time = datetime.now() + timedelta(seconds=PLAY_TIME + 1)
+                else:
+                    start_game()
 
             if pygame.mouse.get_pressed()[0]:
                 canvas.draw_square(pygame.mouse.get_pos())
@@ -64,13 +71,11 @@ def start_game():
             if pygame.mouse.get_pressed()[2]:
                 canvas.remove_square(pygame.mouse.get_pos())
 
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                start_game()
-
             if event.type == pygame.KEYDOWN and event.key == pygame.K_BACKSPACE:
                 canvas.create_img()
 
         if left_time == 0:
+            met_end_of_round = True
             canvas.create_img()
 
             similarity_percent = int(100 - image_comparer.rms_diff(drawn_image, model_image))
